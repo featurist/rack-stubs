@@ -12,3 +12,10 @@ Then /^(GET|POST) (\/[^\s]*) should return (\d\d\d) with the body "([^"]*)"$/ do
     response.body.should == body
   end
 end
+
+Then /^(GET|POST) (\/[^\s]*) should return (\d\d\d) with the body:$/ do |verb, path, status, body|
+  RestClient.send(verb.downcase, url(path), {}) do |response, request, result, &block|
+    response.code.should == status.to_i
+    response.body.should == body
+  end
+end

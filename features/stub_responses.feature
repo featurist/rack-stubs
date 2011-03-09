@@ -28,7 +28,7 @@ Feature: Stub Responses
       """
     Then  POST /bar should return 200 with the body "funk"
     And   GET /foo should return 404 with the body "Not Found"
- 
+    
   Scenario: Clear all stub responses
     When  I POST "application/json+rack-stub" to /foo with the body:
       """
@@ -47,4 +47,23 @@ Feature: Stub Responses
       """
     Then  GET /foo should return 404 with the body "Not Found"
     And   POST /bar should return 404 with the body "Not Found"
-  
+
+  Scenario: List all stub responses
+    Then  GET /rack_stubs/list should return 200 with the body "{}"
+    When  I POST "application/json+rack-stub" to /foo with the body:
+      """
+        {
+          "GET" : [200, { "header": "value" }, ["salsa"]]
+        }
+      """
+    And   I POST "application/json+rack-stub" to /bar with the body:
+      """
+       {
+         "POST" : [200, { "header": "value" }, ["chicken"]]
+       }
+      """
+    Then  GET /rack_stubs/list should return 200 with the body:
+      """
+      {"/foo":{"GET":[200,{"header":"value"},["salsa"]]},"/bar":{"POST":[200,{"header":"value"},["chicken"]]}}
+      """
+

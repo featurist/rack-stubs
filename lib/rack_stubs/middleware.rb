@@ -5,20 +5,22 @@ module RackStubs
   class Middleware
     def initialize(app)
       @app = app
-      @@stubs = {}
+      @stubs = {}
     end
   
     def call(env)
       request = Rack::Request.new(env)
       if request.path =~ /\/rack_stubs\/clear$/
-        @@stubs = {}
+        @stubs = {}
         ok
+      elsif request.path =~ /\/rack_stubs\/list$/
+        [200, {"Content-Type" => "text/plain"}, [@stubs.to_json]]
       elsif request.content_type == "application/json+rack-stub"
-        @@stubs[request.path] = JSON.parse(request.body.read.to_s)
+        @stubs[request.path] = JSON.parse(request.body.read.to_s)
         ok
-      elsif @@stubs.include?(request.path) &&
-            @@stubs[request.path].include?(request.request_method)
-        @@stubs[request.path][request.request_method]
+      elsif @stubs.include?(request.path) &&
+            @stubs[request.path].include?(request.request_method)
+        @stubs[request.path][request.request_method]
       else
         @app.call(env)
       end
