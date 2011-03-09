@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.description = 'Makes rack apps deliver stub responses'
   s.summary     = "rack-stubs-#{s.version}"
   s.email       = 'joshuachisholm@gmail.com'
-  s.homepage    = 'http://github.com/joshski/rack_stubs'
+  s.homepage    = 'http://github.com/joshski/rack-stubs'
 
   s.add_dependency 'json', '~> 1.4.6'
   s.add_dependency 'rack', '~> 1.2.1'
