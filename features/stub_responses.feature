@@ -30,16 +30,16 @@ Feature: Stub Responses
     And   GET /foo should return 404 with the body "Not Found"
  
   Scenario: Clear all stub responses
-    When  I POST "application/json+rack-stub" to /bar with the body:
+    When  I POST "application/json+rack-stub" to /foo with the body:
       """
         {
-          "POST" : [200, { "header": "value" }, ["funk"]]
+          "GET" : [200, { "header": "value" }, ["soul"]]
         }
       """
     And   I POST "application/json+rack-stub" to /bar with the body:
       """
        {
-         "POST" : [200, { "header": "value" }, ["funk"]]
+         "POST" : [200, { "header": "value" }, ["brother"]]
        }
       """
     When  I POST "application/json+rack-stub" to /rack_stubs/clear with the body:
