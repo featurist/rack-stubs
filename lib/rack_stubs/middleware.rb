@@ -10,7 +10,7 @@ module RackStubs
   
     def call(env)
       request = Rack::Request.new(env)
-      if request.path == "/rack_stubs/clear"
+      if request.path =~ /\/rack_stubs\/clear$/
         @@stubs = {}
         ok
       elsif request.content_type == "application/json+rack-stub"
