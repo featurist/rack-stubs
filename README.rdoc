@@ -1,0 +1,7 @@
+= Rack Stubs
+
+Rack middleware for specifying behaviour of HTTP resources by POSTing stub representations.
+
+== Usage
+
+See the features :)
