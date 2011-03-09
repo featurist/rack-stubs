@@ -18,7 +18,7 @@ module RackStubs::World
   end
   
   def start_server
-    @server ||= begin
+    @@server ||= begin
       server = WebServer.new
       server.start(app, options)
       server
