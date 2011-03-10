@@ -6,3 +6,4 @@ module RackStubs
 end
 
 require 'rack_stubs/middleware'
+require 'rack_stubs/client'
