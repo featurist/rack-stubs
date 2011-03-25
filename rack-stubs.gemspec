@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 1.4.6'
   s.add_dependency 'rack', '~> 1.2.1'
-  s.add_dependency 'rest-client', '~> 1.6.1'
+  s.add_dependency 'rest-client', '~> 1.4.2'
   
   s.rubygems_version  = "1.3.7"
   s.files             = `git ls-files`.split("\n")

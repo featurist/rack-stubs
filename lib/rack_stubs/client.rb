@@ -19,6 +19,11 @@ module RackStubs
     def post(path)
       PathSpecification.new(service_url(path), 'POST', @rest_client)
     end
+    
+    def clear_all!
+      @rest_client.post(service_url("rack_stubs/clear"), "", {"Content-Type" => "application/json+rack-stub"})
+    end
+    
   end
 
   class PathSpecification
