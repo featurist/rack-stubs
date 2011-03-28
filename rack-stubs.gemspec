@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rest-client', '~> 1.6.1'
   
   s.add_development_dependency 'rspec', '~> 2.2.0'
+  s.add_development_dependency 'cucumber', '~> 0.10.0'
   
   s.rubygems_version  = "1.3.7"
   s.files             = `git ls-files`.split("\n")
