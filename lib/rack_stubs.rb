@@ -2,7 +2,7 @@ lib = File.dirname(__FILE__)
 $:.unshift(lib) unless $:.include?(lib) || $:.include?(File.expand_path(lib))
 
 module RackStubs
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 end
 
 require 'rack_stubs/middleware'
