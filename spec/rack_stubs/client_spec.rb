@@ -67,5 +67,10 @@ module RackStubs
       Client.new("http://path/with/a/trailing/slash/", @rest_client).get("anything").returns(200, { }, "")
     end
     
+    it "clears all stubs" do
+      @rest_client.should_receive(:post).with("http://path/to/service/rack_stubs/clear", '', {"Content-Type" => "application/json+rack-stub"}) 
+      @client.clear_all!
+    end
+    
   end
 end
