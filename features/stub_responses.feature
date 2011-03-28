@@ -66,25 +66,3 @@ Feature: Stub Responses
       """
       {"/foo":{"GET":[200,{"header":"value"},["salsa"]]},"/bar":{"POST":[200,{"header":"value"},["chicken"]]}}
       """
-
- Scenario: Count no of times a service is requested
-   Then GET /rack_stubs/list should return 200 with the body "{}"
-   When I POST "application/json+rack-stub" to /foo with the body:
-      """
-        {
-          "GET" : [200, { "header": "value" }, ["salsa"]]
-        }
-      """
-    And I POST "application/json+rack-stub" to /bar with the body:
-      """
-       {
-         "GET" : [200, { "header": "value" }, ["chicken"]]
-       }
-      """
-    Then GET /foo should return 200 with the body "salsa" 
-    And GET /foo should return 200 with the body "salsa"  
-    And GET /bar should return 200 with the body "chicken"  
-    And GET /rack_stubs/request_count should return 200 with the body:
-      """
-      {"/foo":2,"/bar":1}
-      """

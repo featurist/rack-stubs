@@ -11,7 +11,7 @@ module RackStubs
     def call(env)
       request = Rack::Request.new(env)
       if request.path =~ /\/rack_stubs\/clear$/
-        @stubs = {}
+        clear_all!
         ok
       elsif request.path =~ /\/rack_stubs\/list$/
         [200, {"Content-Type" => "text/plain"}, [@stubs.to_json]]
@@ -32,6 +32,10 @@ module RackStubs
     
     def post(path)
       PathSpecification.new(@stubs, path, 'POST')
+    end
+    
+    def clear_all!
+      @stubs = {}
     end
     
     class PathSpecification
