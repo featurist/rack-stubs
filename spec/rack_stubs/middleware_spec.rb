@@ -1,0 +1,21 @@
+module RackStubs  
+  describe Middleware do
+    it "allows GET behaviour to be specified directly, using the client interface" do
+      app = mock("app")
+      env = Rack::MockRequest.env_for("/foo")
+      env["REQUEST_METHOD"] = "GET"
+      middleware = Middleware.new(app)
+      middleware.get("/foo").returns(200, {}, "found!")
+      middleware.call(env).should == [200, {}, "found!"]
+    end
+    
+    it "allows POST behaviour to be specified directly, using the client interface" do
+      app = mock("app")
+      env = Rack::MockRequest.env_for("/bar")
+      env["REQUEST_METHOD"] = "POST"
+      middleware = Middleware.new(app)
+      middleware.post("/bar").returns(200, {}, "OK!")
+      middleware.call(env).should == [200, {}, "OK!"]
+    end
+  end
+end

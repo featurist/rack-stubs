@@ -25,6 +25,24 @@ module RackStubs
         @app.call(env)
       end
     end
+    
+    def get(path)
+      PathSpecification.new(@stubs, path, 'GET')
+    end
+    
+    def post(path)
+      PathSpecification.new(@stubs, path, 'POST')
+    end
+    
+    class PathSpecification
+      def initialize(stubs, path, verb)
+        @stubs, @path, @verb = stubs, path, verb
+      end
+      
+      def returns(status, headers, body)
+        (@stubs[@path] ||= {})[@verb] = [status, headers, body]
+      end
+    end
 
     private
   
