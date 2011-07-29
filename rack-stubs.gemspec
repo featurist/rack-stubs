@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/joshski/rack-stubs'
 
   s.add_dependency 'json', '~> 1.4.6'
-  s.add_dependency 'rack', '~> 1.2.1'
+  s.add_dependency 'rack', '~> 1.3.1'
   s.add_dependency 'rest-client', '~> 1.4.2'
   
   s.add_development_dependency 'rspec', '~> 2.2.0'
