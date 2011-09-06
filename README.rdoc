@@ -1,7 +1,39 @@
 = Rack Stubs
 
-Rack middleware for specifying behaviour of HTTP resources by POSTing stub representations.
+Rack middleware for stubbing responses from HTTP web services.
 
-== Usage
+== Installation
 
-See the features :)
+  gem install rack-stubs
+
+== Using the server middleware
+
+rack-stubs is implemented as rack middleware, so you would typically host it as part of a rack web app. You can write a rack configuration (config.ru) like this if you want to get started:
+
+  require 'rubygems'
+  require 'rack-stubs'
+
+  use RackStubs::Middleware
+  run lambda { |e| [404, { 'Content-Type' => 'text/plain' }, ["Not found"]] }
+  
+Then you can run the rackup binary:
+
+  rackup
+  
+...and you'll have a server with rack-stubs running at http://127.0.0.1:9292
+
+To create a stub response, let's say we want HTTP GET requests to /foo to return an HTTP 200 status, with the body "bar" and the content type "text/plain". Using a REST tool of some kind (you could use the rest-client ruby gem or the poster firefox plugin) you can now set this up by making the following HTTP request:
+
+  method  : POST
+  action  : http://127.0.0.1:9292/foo
+  body    : { "GET" : [200, { "Content-Type": "text/plain" }, ["bar"]] }
+  headers : Content-Type=application/json+rack-stub
+
+All subsequent requests to http://127.0.0.1:9292/foo should now respond with HTTP 200 status, Content-Type=text/plain and the body "bar". The body is json, but it's essentially implemented as a hash of simple rack-style response tuples.
+
+== Using the client
+
+To use rack-stubs from Ruby without diving down into REST, rack-stubs includes a small client library. To set up the same behaviour as specified above, you would use the client like this:
+
+  client = RackStubs::Client.new("http://127.0.0.1:9292")
+  client.get("/foo").returns(200, { "Content-Type" => "text/plain" }, "bar")
