@@ -5,11 +5,11 @@ require "rack_stubs"
 Gem::Specification.new do |s|
   s.name        = 'rack-stubs'
   s.version     = RackStubs::VERSION
-  s.authors     = ['Josh Chisholm']
+  s.authors     = ['featurist.co.uk']
   s.description = 'Rack middleware for stubbing responses from HTTP web services'
   s.summary     = "rack-stubs-#{s.version}"
-  s.email       = 'joshuachisholm@gmail.com'
-  s.homepage    = 'http://github.com/joshski/rack-stubs'
+  s.email       = 'enquiries@featurist.co.uk'
+  s.homepage    = 'http://github.com/featurist/rack-stubs'
 
   s.add_dependency 'json', '~> 1.4.6'
   s.add_dependency 'rack', '~> 1.3.1'
