@@ -31,9 +31,15 @@ To create a stub response, let's say we want HTTP GET requests to /foo to return
 
 All subsequent requests to http://127.0.0.1:9292/foo should now respond with HTTP 200 status, Content-Type=text/plain and the body "bar". The body is json, but it's essentially implemented as a hash of simple rack-style response tuples.
 
+You can also see a list of all stub responses via GET /rack_stubs/list and clear all stub responses via POST /rack_stubs/clear
+
 == Using the client
 
 To use rack-stubs from Ruby without diving down into REST, rack-stubs includes a small client library. To set up the same behaviour as specified above, you would use the client like this:
 
   client = RackStubs::Client.new("http://127.0.0.1:9292")
   client.get("/foo").returns(200, { "Content-Type" => "text/plain" }, "bar")
+  
+You might want to clear all stub responses, say between test cases, like so:
+
+  client.clear_all!
