@@ -11,13 +11,13 @@ Gem::Specification.new do |s|
   s.email       = 'enquiries@featurist.co.uk'
   s.homepage    = 'http://github.com/featurist/rack-stubs'
 
-  s.add_dependency 'json', '~> 1.4.6'
-  s.add_dependency 'rack', '~> 1.3.1'
-  s.add_dependency 'rest-client', '~> 1.6.3'
+  s.add_dependency 'json'
+  s.add_dependency 'rack'
+  s.add_dependency 'rest-client'
   
-  s.add_development_dependency 'rspec', '~> 2.2.0'
-  s.add_development_dependency 'cucumber', '~> 0.10.0'
-  s.add_development_dependency 'mongrel', '~> 1.1.5'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'cucumber'
+  s.add_development_dependency 'mongrel'
   
   s.rubygems_version  = "1.3.7"
   s.files             = `git ls-files`.split("\n")
